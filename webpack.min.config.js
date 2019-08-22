@@ -1,3 +1,4 @@
+const externals = require('./webpack.config').externals;
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
@@ -6,17 +7,10 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/build'),
     filename: 'index.min.js',
-    library: 'ters',
+    library: 'mobx-state-tree-entity',
     libraryTarget: 'umd'
   },
-  externals: {
-    react: {
-      root: 'React',
-      commonjs2: 'react',
-      commonjs: 'react',
-      amd: 'react'
-    },
-  },
+  externals,
   optimization: {
     minimizer: [new UglifyJsPlugin()]
   }
