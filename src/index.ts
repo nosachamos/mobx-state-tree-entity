@@ -1,2 +1,1 @@
-export * from './isState';
-export * from './Store';
+export * from './useSingletonEntity.model';

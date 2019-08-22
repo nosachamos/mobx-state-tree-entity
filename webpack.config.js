@@ -9,12 +9,17 @@ module.exports = {
     libraryTarget: 'umd'
   },
   externals: {
+    'mobx-devtools-mst': {
+      commonjs2: 'mobx-devtools-mst',
+      commonjs: 'mobx-devtools-mst',
+      amd: 'mobx-devtools-mst'
+    },
     'mobx-react': {
       commonjs2: 'mobx-react',
       commonjs: 'mobx-react',
       amd: 'mobx-react'
     },
-    'mobx': {
+    mobx: {
       commonjs2: 'mobx',
       commonjs: 'mobx',
       amd: 'mobx'
@@ -23,7 +28,7 @@ module.exports = {
       commonjs2: 'mobx-state-tree',
       commonjs: 'mobx-state-tree',
       amd: 'mobx-state-tree'
-    },    
+    },
     react: {
       root: 'React',
       commonjs2: 'react',
