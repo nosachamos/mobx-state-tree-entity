@@ -8,8 +8,7 @@ import {
   ModelProperties,
   OptionalDefaultValueOrFunction,
   types,
-  getParent,
-  getSnapshot
+  getParent
 } from 'mobx-state-tree';
 import axios from 'axios';
 
