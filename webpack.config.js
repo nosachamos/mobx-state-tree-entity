@@ -1,6 +1,7 @@
 const path = require('path');
 
 const externals = {
+  axios: 'axios',
   'mobx-devtools-mst': {
     commonjs2: 'mobx-devtools-mst',
     commonjs: 'mobx-devtools-mst',
