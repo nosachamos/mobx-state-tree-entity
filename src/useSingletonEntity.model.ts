@@ -137,17 +137,8 @@ export const useSingletonEntity = <
         try {
           const url = id ? endpoint + '/' + id : endpoint;
           const response = yield axios.put(url, self.value);
-
-          console.dir(getSnapshot(self.value));
-          console.dir(getSnapshot(self.persistedValue));
-          console.dir(response.data);
-
-          console.log('response: ' + JSON.stringify(response.data));
-          const resJson = JSON.stringify(response.data);
-          console.log('applying: ' + resJson);
           applySnapshot(self.persistedValue, response.data);
           applySnapshot(self.value, response.data);
-          console.log('applied!');
         } catch (e) {
           console.log(e);
           self.metadata.error = JSON.stringify(e);
