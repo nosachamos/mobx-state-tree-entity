@@ -119,7 +119,7 @@ export const useSingletonEntity = <
         self.metadata.isLoading = true;
         try {
           const url = id ? endpoint + '/' + id : endpoint;
-          const response = yield axios.get(url, { crossdomain: true });
+          const response = yield axios.get(url);
           applySnapshot(self.value, response.data);
           applySnapshot(self.persistedValue, response.data);
         } catch (e) {
@@ -136,9 +136,7 @@ export const useSingletonEntity = <
         self.metadata.isLoading = true;
         try {
           const url = id ? endpoint + '/' + id : endpoint;
-          const response = yield axios.put(url, self.value, {
-            crossdomain: true
-          });
+          const response = yield axios.put(url, self.value);
 
           console.dir(getSnapshot(self.value));
           console.dir(getSnapshot(self.persistedValue));
