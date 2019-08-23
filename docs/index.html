@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <title>
+      formalizer - React hooks based form validation made for humans.
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="description"
+      content="React hooks based form validation made for humans."
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css" />
+
+    <style>
+      section.cover ul {
+        margin-top: -80px;
+        color: white;
+      }
+
+      @media (max-width: 860px) {
+        section.cover ul {
+          margin-top: -40px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        section.cover ul {
+          margin-top: 0px;
+        }
+      }
+
+      .markdown-section h1 {
+        margin: 2.5rem 0 1rem;
+      }
+
+      section.cover.has-mask .mask {
+        opacity: 0 !important;
+      }
+
+      section.cover .cover-main img {
+        margin-top: -100px;
+      }
+
+      /* Get started button */
+      section.cover .cover-main > p:last-child a:last-child {
+        background-color: white;
+        color: #185bbd;
+      }
+
+      /* Get started hover button */
+      section.cover .cover-main > p:last-child a:last-child:hover {
+        color: #0067ff; !important;
+      }
+
+      /* Github button */
+      section.cover .cover-main > p:last-child a {
+        border-color: white;
+        color: white;
+      }
+
+      /* Github hover button */
+      section.cover .cover-main > p:last-child a:not(:last-child):hover {
+        color: #ddeafe;
+        border-color: #ddeafe;
+      }
+
+      .github-corner svg {
+        fill: #185bbd;
+      }
+
+      .markdown-section code {
+        font-size: 0.8em;
+      }
+
+
+
+      .app-sub-sidebar li:before {
+        opacity: 0;
+      }
+
+      .sidebar-nav > ul > li > a {
+        font-weight: bold;
+      }
+
+      .sidebar ul li.active > a,
+      .markdown-section code,
+      .token.function,
+      .token.keyword {
+        color: #185bbd;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      window.$docsify = {
+        routerMode: 'hash',
+        auto2top: true,
+        loadSidebar: true,
+        subMaxLevel: 3,
+        coverpage: true,
+        onlyCover: true,
+        logo: '_media/sidebarLogo.png',
+        name: 'formalizer',
+        repo: 'https://github.com/nosachamos/formalizer',
+        baseUrl: 'https://nosachamos.github.io/formalizer/'
+      };
+    </script>
+    <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-jsx.min.js"></script>
+  </body>
+</html>
