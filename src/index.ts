@@ -1,1 +1,1 @@
-export * from './useSingletonEntity.model';
+export * from './useSingletonEntityl';
