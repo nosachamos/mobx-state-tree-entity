@@ -6,7 +6,7 @@
 ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/nosachamos/mobx-state-tree-entity.svg)
 ![GitHub](https://img.shields.io/github/license/nosachamos/mobx-state-tree-entity.svg)
 
-![Formalizer](_media/logo.png)
+![mobx-state-tree-entity](_media/logo.png)
 
 Transparent entity management so clean you may never make an api request manually again.
 
