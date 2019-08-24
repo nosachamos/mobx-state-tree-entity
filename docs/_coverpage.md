@@ -11,5 +11,3 @@ Coming soon...
 
 [GitHub](https://github.com/nosachamos/mobx-state-tree-entity/)
 [Getting Started](/home)
-
-![](_media/background.jpg)
