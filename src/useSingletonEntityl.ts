@@ -11,6 +11,7 @@ import {
   getParent
 } from 'mobx-state-tree';
 import axios from 'axios';
+import { Status } from './Status';
 
 export declare type ExtractProps<
   T extends IAnyModelType
@@ -33,8 +34,17 @@ const metadata = types
         JSON.stringify(value) !== JSON.stringify(persistedValue)
       );
     },
+
     get hasError(): boolean {
       return !!self.error;
+    },
+
+    get status(): Status {
+      return self.isLoading
+        ? Status.IN_PROGRESS
+        : !!self.error
+        ? Status.SUCCESS
+        : Status.SUCCESS;
     }
   }));
 
@@ -160,7 +170,8 @@ export const useSingletonEntity = <
         error: null,
         hasLoaded: false,
         isDirty: false,
-        isLoading: false
+        isLoading: false,
+        status: Status.PENDING
       },
       value: initialValue
     }
@@ -177,6 +188,7 @@ interface SingletonEntity<V> {
     isLoading: boolean;
     isDirty: boolean;
     hasLoaded: boolean;
+    status: Status;
     error?: any;
   };
 }
