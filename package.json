@@ -1,6 +1,6 @@
 {
   "name": "mobx-state-tree-entity",
-  "version": "0.0.1-concept-pre-alpha.5",
+  "version": "0.0.1-concept-pre-alpha.6",
   "description": "React state management made for humans.",
   "main": "build/index.js",
   "typings": "build/index.d.ts",
