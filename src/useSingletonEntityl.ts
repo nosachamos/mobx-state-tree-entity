@@ -20,9 +20,13 @@ export declare type ExtractProps<
 const metadata = types
   .model('Metadata', {
     error: types.maybeNull(types.string),
+    isHydrating: types.optional(types.boolean, false),
     isLoading: types.optional(types.boolean, false),
     status: types.optional(types.integer, Status.PENDING)
   })
+  .volatile(() => ({
+    hasHydrated: false
+  }))
   .views(self => ({
     get isDirty(): boolean {
       // ephemeral value doesn't match persisted one - model is dirty
@@ -118,6 +122,7 @@ export const useSingletonEntity = <
     .actions(self => ({
       read: flow(function* get(id?: string | number): IterableIterator<any> {
         self.metadata.isLoading = true;
+        self.metadata.isHydrating = !self.metadata.hasHydrated;
         try {
           self.metadata.status = Status.IN_PROGRESS;
 
@@ -131,6 +136,8 @@ export const useSingletonEntity = <
           self.metadata.status = Status.ERROR;
         } finally {
           self.metadata.isLoading = false;
+          self.metadata.isHydrating = false;
+          self.metadata.hasHydrated = true;
         }
 
         return self.persistedValue;
@@ -139,6 +146,7 @@ export const useSingletonEntity = <
         id?: string | number
       ): IterableIterator<any> {
         self.metadata.isLoading = true;
+        self.metadata.isHydrating = !self.metadata.hasHydrated;
         try {
           self.metadata.status = Status.IN_PROGRESS;
 
@@ -152,6 +160,8 @@ export const useSingletonEntity = <
           self.metadata.status = Status.ERROR;
         } finally {
           self.metadata.isLoading = false;
+          self.metadata.isHydrating = false;
+          self.metadata.hasHydrated = true;
         }
 
         return self.persistedValue;
@@ -169,6 +179,7 @@ export const useSingletonEntity = <
         error: null,
         hasLoaded: false,
         isDirty: false,
+        isHydrating: false,
         isLoading: false,
         status: Status.PENDING
       },
@@ -185,6 +196,7 @@ interface SingletonEntity<V> {
   isDirty: boolean;
   metadata: {
     isLoading: boolean;
+    isHydrating: boolean;
     isDirty: boolean;
     hasLoaded: boolean;
     status: Status;
