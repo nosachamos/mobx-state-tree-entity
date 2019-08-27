@@ -20,8 +20,8 @@ export declare type ExtractProps<
 const metadata = types
   .model('Metadata', {
     error: types.maybeNull(types.string),
-    hasLoaded: types.optional(types.boolean, false),
-    isLoading: types.optional(types.boolean, false)
+    isLoading: types.optional(types.boolean, false),
+    status: types.optional(types.integer, Status.PENDING)
   })
   .views(self => ({
     get isDirty(): boolean {
@@ -37,14 +37,6 @@ const metadata = types
 
     get hasError(): boolean {
       return !!self.error;
-    },
-
-    get status(): Status {
-      return self.isLoading
-        ? Status.IN_PROGRESS
-        : !!self.error
-        ? Status.SUCCESS
-        : Status.SUCCESS;
     }
   }));
 
@@ -127,12 +119,16 @@ export const useSingletonEntity = <
       read: flow(function* get(id?: string | number): IterableIterator<any> {
         self.metadata.isLoading = true;
         try {
+          self.metadata.status = Status.IN_PROGRESS;
+
           const url = id ? endpoint + '/' + id : endpoint;
           const response = yield axios.get(url);
           applySnapshot(self.value, response.data);
           applySnapshot(self.persistedValue, response.data);
+          self.metadata.status = Status.SUCCESS;
         } catch (e) {
           self.metadata.error = JSON.stringify(e);
+          self.metadata.status = Status.ERROR;
         } finally {
           self.metadata.isLoading = false;
         }
@@ -144,13 +140,16 @@ export const useSingletonEntity = <
       ): IterableIterator<any> {
         self.metadata.isLoading = true;
         try {
+          self.metadata.status = Status.IN_PROGRESS;
+
           const url = id ? endpoint + '/' + id : endpoint;
           const response = yield axios.put(url, self.value);
           applySnapshot(self.persistedValue, response.data);
           applySnapshot(self.value, response.data);
+          self.metadata.status = Status.SUCCESS;
         } catch (e) {
-          console.log(e);
           self.metadata.error = JSON.stringify(e);
+          self.metadata.status = Status.ERROR;
         } finally {
           self.metadata.isLoading = false;
         }
